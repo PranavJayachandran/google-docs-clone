@@ -3,6 +3,7 @@ import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import { io } from "socket.io-client";
 import { useParams } from "react-router-dom";
+import Header from "./Header";
 
 const SAVE_INTERVAL_MS = 2000;
 
@@ -77,7 +78,16 @@ const SocketComponent = () => {
     q.disable();
     q.setText("Loading....");
   }, []);
-  return <div id="container" ref={wrapperRef}></div>;
+  return (
+    <div>
+      <Header />
+      <div
+        id="container"
+        ref={wrapperRef}
+        className="example overflow-scroll -m-8"
+      ></div>
+    </div>
+  );
 };
 
 export default SocketComponent;
