@@ -13,7 +13,12 @@
 }
 .ql-container {
   min-height: 500px;
+  margin: 10px;
+}
+.ql-container.ql-snow {
   border: none;
+  background: rgba(227, 227, 227, 0.47);
+  border-radius: 5px;
 }
 .example::-webkit-scrollbar {
   display: none;

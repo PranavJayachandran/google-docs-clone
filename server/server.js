@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
+require('dotenv').config();
 
-const mongoURI = 'mongodb+srv://pranavjay02:UXgGrd6Rg9dCf59N@cluster0.y3izltn.mongodb.net/'
+const mongoURI = process.env.DB_URL
 mongoose.connect(mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -39,3 +40,22 @@ const findOrCreateDocument = async (id) => {
     if (document) return document
     return await Document.create({ _id: id, data: defaultValue })
 }
+
+
+
+const express = require('express');
+const cors = require('cors');
+const app = express();
+const port = 3000;
+
+app.use(cors());
+app.use(express.json());
+
+app.get('/documents', async (req, res) => {
+    const document = await Document.find();
+    res.send(document)
+})
+
+app.listen(port, () => {
+    console.log("server is listne");
+})
